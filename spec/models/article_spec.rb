@@ -39,5 +39,15 @@ RSpec.describe Article, type: :model do
         expect(article.errors[:title]).to include("is too long (maximum is 50 characters)")
       end
     end
+
+    context "content" do
+      it 'contentが空の場合、不正データとなる' do
+
+        article.content = ''
+
+        expect(article).not_to be_valid
+        expect(article.errors[:content]).to include("can't be blank")
+      end
+    end
   end
 end
