@@ -36,6 +36,7 @@ RSpec.describe Article, type: :model do
 
         article.title = 'a' * 51
         expect(article).not_to be_valid
+        expect(article.errors[:title]).to include("is too long (maximum is 50 characters)")
       end
     end
   end
