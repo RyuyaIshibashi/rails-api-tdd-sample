@@ -29,6 +29,14 @@ RSpec.describe Article, type: :model do
         article_2.title = 'new title'
         expect(article_2).to be_valid
       end
+
+      it 'titleは50文字以内でない場合、不正データとなる' do
+        article.title = 'a' * 50
+        expect(article).to be_valid
+
+        article.title = 'a' * 51
+        expect(article).not_to be_valid
+      end
     end
   end
 end
